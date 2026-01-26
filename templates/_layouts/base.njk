@@ -1,0 +1,20 @@
+{# _includes/layouts/base.njk #}
+<!DOCTYPE html>
+<html lang="en" class="bg-white text-black">
+  <head>
+    {% include "meta.njk" %}
+  </head>
+  <body>
+    <div class="min-h-screen bg-surface min-w-screen flex flex-col">
+    {% block mainContent %}
+      {% include "oa-banner.njk" %}
+      {% include "header.njk" %}
+      <main class="grow">
+        {{ content | safe }}
+      </main>
+      {% include "footer.njk" %}
+    {% endblock %}
+      <script src="/assets/js/main.js"></script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+---
+permalink: /open-artifact.json
+eleventyExcludeFromCollections: true
+---
+{
+  "name": "{{ site.title }}",
+  "description": "{{ site.description }}",
+  "maintainer": {
+    "name": "{{ site.maintainer.name }}",
+    "email": "{{ site.maintainer.email }}",
+    "url": "{{ site.maintainer.url }}"
+  },
+  "license": "{{ site.license }}",
+  "tags": {{ site.tags | jsonify | safe }},
+  "urls": {
+    "self": " {{ site.urls.self }}",
+    "repository": "{{ site.urls.repository }}",
+    "contribute": "{{ site.urls.contribute }}"
+  },
+  "needsDoing": {
+    "sourceType": "{{ site.needsDoing.sourceType }}",
+    "url": "{{ site.needsDoing.url }}"
+  }
+}

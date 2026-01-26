@@ -1,0 +1,100 @@
+{# _includes/side-navigation.njk #}
+
+{# --- MACRO: Reusable Code for Rendering a Single Link --- #}
+{# This keeps your logic clean so you don't copy-paste the active state classes twice #}
+{% macro renderNavItem(entry, currentUrl) %}
+  <li class="-ml-px flex flex-col items-start gap-2">
+    {% set isCurrent = (entry.url == currentUrl) %}
+    
+    <a href="{{ entry.url }}"
+      {% if isCurrent %}aria-current="page"{% endif %}
+      class="
+        pl-5 sm:pl-4 inline-block border-l text-base/8 sm:text-sm/6 w-full
+        
+        {# Default State #}
+        border-transparent 
+        text-gray-600 
+        hover:border-gray-950/25 
+        hover:text-gray-950 
+        dark:text-gray-300 
+        dark:hover:border-white/25 
+        dark:hover:text-white 
+        
+        {# Active State #}
+        aria-[current]:border-gray-950 
+        aria-[current]:font-semibold 
+        aria-[current]:text-gray-950 
+        
+        {# Dark Mode Active State #}
+        dark:aria-[current]:border-white 
+        dark:aria-[current]:text-white
+      "
+    >
+      {{ entry.title }}
+    </a>
+  </li>
+{% endmacro %}
+
+{% set rootKey = navKey if navKey else "project" %}
+{% set navPages = collections.all | eleventyNavigation(rootKey) %}
+{% set navParent = collections.all | eleventyNavigationBreadcrumb(navPages[0].key, { allowMissing: true })%}
+{% set navParentLength = navParent | length %}
+
+{# --- MOBILE NAVIGATION: Dropdown Select --- #}
+
+<div class="md:hidden mb-2">
+  <div class="w-full bg-accent-warm-100 border-t border-b border-accent-warm-200 dark:border-accent-warm-800 py-3">
+    <label for="mobile-nav" class="sr-only">Jump to section...</label>
+    <select 
+      id="mobile-nav"
+      class="block w-(--width-minus-margin) mx-3 rounded-md border-base-600 bg-base-100 py-2 pl-3 pr-10 text-base focus:border-primary focus:outline-none focus:ring-primary sm:text-sm [--width-minus-margin:calc(100%-1.5rem)]"
+      onchange="if (this.value) window.location.href=this.value"
+    >
+      {% for entry in navPages %}
+        {# Handle Grouped Items with Optgroup #}
+        {% if entry.children and entry.children.length > 0 %}
+          <optgroup label="{{ entry.title }}">
+            {% for child in entry.children %}
+              <option value="{{ child.url }}" {% if child.url == page.url %}selected{% endif %}>
+                {{ child.title }}
+              </option>
+            {% endfor %}
+          </optgroup>
+        
+        {# Handle Top-Level Items #}
+        {% else %}
+          <option value="{{ entry.url }}" {% if entry.url == page.url %}selected{% endif %}>
+            {{ entry.title }}
+          </option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<nav class="hidden md:block" aria-label="Sidebar">
+  <h3 class="font-mono text-sm/6 font-medium tracking-widest text-gray-500 uppercase sm:text-xs/6 dark:text-gray-400 mt-6 mb-2">{{ navParent[navParentLength-1].title }}</h3>
+  <ul class="flex flex-col gap-2 border-l dark:border-gray-800 border-gray-200">
+  {%- for entry in navPages %}
+    
+    {# CASE A: It is a Group Header (Has children, but usually no URL) #}
+    {% if entry.children and entry.children.length > 0 %}
+      
+      {# 1. Render the Section Header #}
+      <li class="mt-6 mb-2 pl-5 sm:pl-4 font-mono text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+        {{ entry.title }}
+      </li>
+
+      {# 2. Render the Children of this Group #}
+      {% for child in entry.children %}
+        {{ renderNavItem(child, page.url) }}
+      {% endfor %}
+
+    {# CASE B: It is a Standard Top-Level Page #}
+    {% else %}
+      {{ renderNavItem(entry, page.url) }}
+    {% endif %}
+
+  {%- endfor %}
+  </ul>
+</nav>

@@ -1,0 +1,53 @@
+---
+layout: default.njk
+title: Our Project Roadmap
+permalink: /oa-roadmap.html
+---
+
+<div class="max-w-3xl mx-auto py-12 px-6">
+  
+  <header class="mb-12">
+    <h1 class="text-4xl font-bold text-slate-900 mb-4">{{ title }}</h1>
+    <p class="text-xl text-slate-600">
+      Help us build this Open Artifact.<br>Below is our vision for the future and the tasks we need help with.
+    </p>
+    <a href="/oa-roadmap.json" class="text-sm text-indigo-600 underline mt-2 block">View Raw Data (JSON)</a>
+  </header>
+
+  <div class="space-y-12">
+    {% for milestone in oas.roadmap %}
+    <section class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+      
+      <div class="bg-slate-50 p-6 border-b border-slate-200">
+        <div class="flex justify-between items-start mb-2">
+          <h2 class="text-2xl font-bold text-slate-800">{{ milestone.title }}</h2>
+          <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full 
+            {% if milestone.status == 'In Progress' %}bg-green-100 text-green-800
+            {% else %}bg-slate-200 text-slate-600{% endif %}">
+            {{ milestone.status }}
+          </span>
+        </div>
+        <div class="prose prose-slate text-slate-600">
+          {{ milestone.vision | md | safe }} 
+        </div>
+      </div>
+
+      <div class="p-6 bg-white">
+        <h3 class="font-bold text-slate-900 mb-4 uppercase text-sm tracking-wide">Work Needed:</h3>
+        <ul class="space-y-3">
+          {% for task in milestone.tasks %}
+          <li class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-indigo-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-slate-700">{{ task }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </section>
+    {% endfor %}
+  </div>
+
+</div>

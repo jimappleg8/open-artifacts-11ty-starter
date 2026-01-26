@@ -1,0 +1,35 @@
+{% macro swatches(primary, secondary, base, accentCool, accentWarm) %}
+<div class="flex flex-wrap justify-center gap-6 p-4 mb-6">
+
+  <!-- Primary Color Swatch -->
+  <div class="flex flex-col items-center text-center">
+    <div class="w-18 h-12 rounded-lg shadow-lg border" style="background-color: var(--color-{{ primary }}-600);"></div>
+    <p class="mt-2 text-sm font-medium">Primary</p>
+  </div>
+
+  <!-- Secondary Color Swatch -->
+  <div class="flex flex-col items-center text-center">
+    <div class="w-18 h-12 rounded-lg shadow-lg border" style="background-color: var(--color-{{ secondary }}-600);"></div>
+    <p class="mt-2 text-sm font-medium">Secondary</p>
+  </div>
+
+  <!-- Base Color Swatch -->
+  <div class="flex flex-col items-center text-center">
+    <div class="w-18 h-12 rounded-lg shadow-lg border" style="background-color: var(--color-{{ base }}-600);"></div>
+    <p class="mt-2 text-sm font-medium">Base</p>
+  </div>
+
+  <!-- Accent Cool Color Swatch -->
+  <div class="flex flex-col items-center text-center">
+    <div class="w-18 h-12 rounded-lg shadow-lg border" style="background-color: var(--color-{{ accentCool }}-600);"></div>
+    <p class="mt-2 text-sm font-medium">Accent Cool</p>
+  </div>
+
+  <!-- Accent Warm Color Swatch -->
+  <div class="flex flex-col items-center text-center">
+    <div class="w-18 h-12 rounded-lg shadow-lg border" style="background-color: var(--color-{{ accentWarm }}-600);"></div>
+    <p class="mt-2 text-sm font-medium">Accent Warm</p>
+  </div>
+
+</div>
+{% endmacro %}

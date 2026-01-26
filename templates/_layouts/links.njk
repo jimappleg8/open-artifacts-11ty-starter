@@ -1,0 +1,82 @@
+{% extends "./base.njk" %}
+
+{% from "macros/theme-toggle.njk" import themeToggle %}
+
+{# Override the main block to remove standard Header/Footer #}
+{% block mainContent %}
+<div class="min-h-screen w-full flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 bg-surface transition-colors duration-300">
+  
+  <div class="w-full max-w-md text-center space-y-4 mb-8">
+    {% if profileImage %}
+      <div class="relative w-24 h-24 mx-auto">
+        <img 
+          class="rounded-full border-4 border-surface shadow-lg object-cover w-full h-full" 
+          src="{{ profileImage }}" 
+          alt="{{ title }}"
+        >
+        <div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-surface rounded-full" title="Available"></div>
+      </div>
+    {% endif %}
+
+    <h1 class="text-2xl font-bold text-ink tracking-tight">{{ title }}</h1>
+    
+    {% if bio %}
+      <p class="text-base-500 text-sm sm:text-base max-w-xs mx-auto leading-relaxed">
+        {{ bio }}
+      </p>
+    {% endif %}
+
+    {% if socialLinks %}
+    <div class="flex justify-center gap-4 pt-2">
+      {% for social in socialLinks %}
+        <a href="{{ social.url }}" class="text-base-400 hover:text-primary transition-colors hover:scale-110 transform duration-200">
+          <span class="sr-only">{{ social.platform }}</span>
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="w-full max-w-md space-y-4">
+    {% for link in links %}
+      {% set isHighlight = link.highlight | default(false) %}
+      
+      <a 
+        href="{{ link.url }}" 
+        class="
+          group block w-full text-center py-4 px-6 rounded-xl border-2 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md
+          
+          {% if isHighlight %}
+            bg-primary border-primary text-on-primary hover:bg-primary-500 hover:border-primary-500
+          {% else %}
+            bg-surface border-base-200 text-ink hover:border-primary hover:text-primary
+          {% endif %}
+        "
+      >
+        <span class="font-semibold text-lg">{{ link.title }}</span>
+        {% if link.subtitle %}
+          <span class="block text-xs opacity-80 font-medium mt-0.5 group-hover:text-current text-base-500">{{ link.subtitle }}</span>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="mt-12 text-center">
+    <div class="inline-block p-2 rounded-full bg-base-100 dark:bg-base-800 mb-4">
+      {{ themeToggle() }} 
+    </div>
+    <p class="text-xs text-base-400 font-mono uppercase tracking-widest">
+      <a href="/" class="hover:text-primary transition-colors">Made with Open Artifacts</a>
+    </p>
+  </div>
+
+</div>
+
+<style>
+  .bg-surface {
+    background-image: radial-gradient(var(--color-base-200) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+</style>
+{% endblock %}

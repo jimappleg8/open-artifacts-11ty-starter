@@ -1,0 +1,97 @@
+<div class="w-full mx-auto flex items-center justify-center bg-accent-warm dark:bg-accent-warm-800 text-on-accent-warm px-4 py-2">
+  <div class="px-2">
+    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11.5" fill="#fff"/>
+      <path d="M15.37,20.15l-1.47-4.06h-3.81l-1.47,4.06h-3.25c1.81,1.47,4.11,2.35,6.62,2.35s4.81-.88,6.62-2.35h-3.25Z" fill="var(--color-accent-cool)"/>
+      <path d="M9.11,2.8h5.78l5.57,15.42c1.28-1.74,2.04-3.89,2.04-6.22,0-5.8-4.7-10.5-10.5-10.5S1.5,6.2,1.5,12c0,2.33.76,4.48,2.04,6.22L9.11,2.8Z" fill="var(--color-accent-cool)"/>
+      <ellipse cx="12" cy="12" rx="3.56" ry="2.77" fill="var(--color-accent-warm)"/>
+    </svg>
+  </div>
+  
+  <div class="text-xs">
+    {{ "open_artifacts_banner" | t(lang) | safe }}
+    <button 
+      id="js-open-oa-modal"
+      class="pl-2 underline text-xs hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-white rounded cursor-pointer"
+      aria-label="Learn more about Open Artifacts"
+    >
+      {{ "what_does_that_mean" | t(lang) | safe }}
+    </button>
+  </div>
+</div>
+
+<dialog 
+  id="oa-modal" 
+  class="bg-surface mx-auto mt-12 text-ink p-0 rounded-xl shadow-2xl backdrop:bg-black/50 max-w-lg w-[90%] md:w-full dark:backdrop:bg-black/70"
+>
+  <div class="p-6 relative">
+    
+    <button 
+      id="js-close-oa-modal" 
+      class="absolute top-4 right-4 p-2 rounded-full text-base-400 hover:bg-base-100 dark:hover:bg-base-800 hover:text-ink transition-colors"
+      aria-label="Close modal"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <div class="prose prose-default max-w-none">
+
+      <div class="flex items-center mb-6 not-prose pr-8">
+        <svg class="block flex-shrink-0 w-9 h-9" id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="11.5" fill="#fff"/>
+          <path d="M15.37,20.15l-1.47-4.06h-3.81l-1.47,4.06h-3.25c1.81,1.47,4.11,2.35,6.62,2.35s4.81-.88,6.62-2.35h-3.25Z" fill="var(--color-accent-cool)"/>
+          <path d="M9.11,2.8h5.78l5.57,15.42c1.28-1.74,2.04-3.89,2.04-6.22,0-5.8-4.7-10.5-10.5-10.5S1.5,6.2,1.5,12c0,2.33.76,4.48,2.04,6.22L9.11,2.8Z" fill="var(--color-accent-cool)"/>
+          <ellipse cx="12" cy="12" rx="3.56" ry="2.77" fill="var(--color-accent-warm)"/>
+        </svg>
+        <h3 class="text-xl font-bold ml-3 text-primary leading-tight">What is an Open Artifact?</h3>
+      </div>
+      
+      <p>
+        Think of <strong class="text-accent-warm">Open Artifacts</strong> as open source for everything humans create, from toys to governments. They give life to our ideas by inviting the community to join us in their development.
+      </p>
+      <p>
+        Like open-source software, these projects are free to use, adapt, and improve. <strong class="text-accent-warm">Cultural Creators</strong>, like us, engage with open artifacts as part of our <strong class="text-accent-warm">Creative Practice</strong> to improve ourselves and to help build a better world.
+      </p>
+      <div class="relative text-sm bg-base-subtle p-4 rounded-lg hover:bg-primary-subtle hover:border-primary-200 border-base-subtle border">
+        <a class="text-on-primary-subtle no-underline" href="https://evolvetheworld.org/">
+          <span class="absolute inset-0"></span>
+          Visit <span class="text-accent-warm underline">Evolve The World</span></a>
+        to learn more about these concepts and how they fit together.
+      </div>
+
+    </div>
+  </div>
+</dialog>
+
+<script>
+  (function() {
+    const dialog = document.getElementById('oa-modal');
+    const openBtn = document.getElementById('js-open-oa-modal');
+    const closeBtn = document.getElementById('js-close-oa-modal');
+
+    // Open
+    if(openBtn && dialog) {
+      openBtn.addEventListener('click', () => dialog.showModal());
+    }
+
+    // Close
+    if(closeBtn && dialog) {
+      closeBtn.addEventListener('click', () => dialog.close());
+    }
+
+    // Click Outside to Close
+    // (Native dialogs don't do this by default, but it's expected UX)
+    if(dialog) {
+      dialog.addEventListener('click', (event) => {
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+        if (!isInDialog) {
+          dialog.close();
+        }
+      });
+    }
+  })();
+</script>

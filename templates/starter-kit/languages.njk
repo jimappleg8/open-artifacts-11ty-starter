@@ -1,0 +1,42 @@
+---
+layout: sidebar-page
+title: Adding Languages
+eleventyNavigation:
+  key: Adding Languages
+  parent: features
+  order: 6
+tags: starter-kit
+navKey: starter-kit
+---
+{% section %}
+
+# Adding Languages
+
+The starter template is minimally set up to handle multiple languages. By default, it includes English as the primary language. To add support for additional languages, follow these steps:
+
+1. **Create Language-Specific Folders**: In your `templates/` directory, create subfolders for each language you want to support. For example, for Spanish, create a folder named `es/`.
+2. **Add Language Data Files**: Inside each language folder, create a `.11tydata.js` file to define the language settings. For example, in `es/es.11tydata.js`, you might have:
+
+   ```js
+   export default {
+     "lang": "es",
+     "locale": "es-ES",
+     "dir": "ltr"
+   };
+   ```
+3. **Add strings to the i18n.js file**: Update the `i18n.js` file located in `src/_data/` to include translations for the new language. For example, add an entry for Spanish:
+
+   ```js
+   const i18n = {
+     menu: {
+      en: "Menu",
+      es: "Menú"
+    }
+   };
+   ```
+
+4. **Translate Content**: Copy the content files from the root `templates/` folder into the respective language folders and translate them accordingly.
+
+5. **Update Navigation**: Ensure that your navigation structure accounts for the different languages, allowing users to switch between them easily.
+
+{% endsection %}

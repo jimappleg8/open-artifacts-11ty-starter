@@ -1,0 +1,9 @@
+---
+permalink: /oa-roadmap.json
+eleventyExcludeFromCollections: true
+---
+{
+  "project": "{{ site.title }}",
+  "lastUpdated": "{{ page.date }}",
+  "oaRoadmap": {{ roadmap | dump | safe }}
+}

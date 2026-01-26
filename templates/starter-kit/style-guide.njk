@@ -1,0 +1,155 @@
+---
+layout: sidebar-page
+title: Theme Style Guide
+eleventyNavigation:
+  key: Theme Style Guide
+  parent: features
+  order: 3
+tags: starter-kit
+navKey: starter-kit
+---
+
+<div class="max-w-4xl mx-auto px-6 py-12 space-y-20">
+
+  <div class="space-y-4">
+    <h1 class="text-4xl font-bold tracking-tight text-ink">Theme Style Guide</h1>
+    <p class="text-xl text-base-500 max-w-2xl">
+      A reference for the currently active theme showing all semantic colors, typography, and UI components. Toggle <strong>Dark Mode</strong> to test semantic shifts.
+    </p>
+  </div>
+
+  <section class="space-y-6">
+    <h2 class="text-2xl font-bold border-b border-base-200 pb-2 text-ink">1. Semantic Palette</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      {% macro sgSwatch(name, bgClass, textClass, label) %}
+      <div class="rounded-xl overflow-hidden shadow-sm border border-base-200">
+        <div class="h-24 {{ bgClass }} flex items-center justify-center">
+          <span class="{{ textClass }} font-mono text-xs font-bold uppercase">{{ label }}</span>
+        </div>
+        <div class="p-3 bg-surface">
+          <p class="text-xs font-mono text-base-500">var(--color-{{ name }})</p>
+        </div>
+      </div>
+      {% endmacro %}
+
+      {{ sgSwatch("primary", "bg-primary", "text-on-primary", "Primary") }}
+      {{ sgSwatch("secondary", "bg-secondary", "text-on-secondary", "Secondary") }}
+      {{ sgSwatch("accent-cool", "bg-accent-cool", "text-on-accent-cool", "Accent Cool") }}
+      {{ sgSwatch("accent-warm", "bg-accent-warm", "text-on-accent-warm", "Accent Warm") }}
+      {{ sgSwatch("base", "bg-base", "text-on-base", "Base / Neutral") }}
+    </div>
+
+    <h3 class="text-lg font-semibold text-ink pt-4">Subtle Variants (Backgrounds)</h3>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+      {{ sgSwatch("primary-subtle", "bg-primary-subtle", "text-on-primary-subtle", "Primary Subtle") }}
+      {{ sgSwatch("secondary-subtle", "bg-secondary-subtle", "text-on-secondary-subtle", "Secondary Subtle") }}
+      {{ sgSwatch("accent-cool-subtle", "bg-accent-cool-subtle", "text-on-accent-cool-subtle", "Cool Subtle") }}
+      {{ sgSwatch("accent-warm-subtle", "bg-accent-warm-subtle", "text-on-accent-warm-subtle", "Warm Subtle") }}
+      {{ sgSwatch("base-subtle", "bg-base-subtle", "text-on-base-subtle", "Base Subtle") }}
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-2xl font-bold border-b border-base-200 pb-2 text-ink">2. Buttons & Interactions</h2>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr>
+            <th class="p-4 text-sm font-semibold text-base-500">Semantic Role</th>
+            <th class="p-4 text-sm font-semibold text-base-500">Solid Button</th>
+            <th class="p-4 text-sm font-semibold text-base-500">Outline / Ghost</th>
+            <th class="p-4 text-sm font-semibold text-base-500">Badge / Tag</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-base-200">
+          {% macro buttonRow(role, bg, on, border) %}
+          <tr>
+            <td class="p-4 font-mono text-sm text-ink">{{ role }}</td>
+            <td class="p-4">
+              <button class="px-5 py-2 rounded-lg font-medium transition-opacity hover:opacity-90 {{ bg }} {{ on }}">
+                Button
+              </button>
+            </td>
+            <td class="p-4">
+              <button class="px-5 py-2 rounded-lg font-medium border-2 {{ border }} text-ink hover:bg-base-100 dark:hover:bg-base-800 transition-colors">
+                Outline
+              </button>
+            </td>
+            <td class="p-4">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ bg }}-subtle {{ on }}-subtle">
+                Badge
+              </span>
+            </td>
+          </tr>
+          {% endmacro %}
+
+          {{ buttonRow("Primary", "bg-primary", "text-on-primary", "border-primary") }}
+          {{ buttonRow("Secondary", "bg-secondary", "text-on-secondary", "border-secondary") }}
+          {{ buttonRow("Accent Cool", "bg-accent-cool", "text-on-accent-cool", "border-accent-cool") }}
+          {{ buttonRow("Accent Warm", "bg-accent-warm", "text-on-accent-warm", "border-accent-warm") }}
+          {{ buttonRow("Base", "bg-base", "text-on-base", "border-base") }}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-2xl font-bold border-b border-base-200 pb-2 text-ink">3. Content Sections</h2>
+    <p class="text-base-500">Simulating your <code>{% raw %}{% section %}{% endraw %}</code> shortcodes.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <div class="rounded-2xl p-8 bg-primary text-on-primary shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Primary Section</h3>
+        <p class="opacity-90">This simulates <code>{% raw %}{% section "primary", "card" %}{% endraw %}</code>.</p>
+        <div class="mt-4 p-4 rounded bg-white/10 border border-white/20 font-mono text-sm">
+          --color-on-primary
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-8 bg-secondary text-on-secondary shadow-lg">
+        <h3 class="text-xl font-bold mb-2">Secondary Section</h3>
+        <p class="opacity-90">This simulates <code>{% raw %}{% section "secondary", "card" %}{% endraw %}</code>.</p>
+        <div class="mt-4 p-4 rounded bg-white/10 border border-white/20 font-mono text-sm">
+          --color-on-secondary
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-8 bg-primary-subtle text-on-primary-subtle shadow-sm border border-primary/20">
+        <h3 class="text-xl font-bold mb-2">Subtle Section</h3>
+        <p>This simulates <code>{% raw %}{% section "primary-subtle", "card" %}{% endraw %}</code>.</p>
+        <p class="text-sm mt-2 opacity-75">Notice how this becomes dark navy in Dark Mode.</p>
+      </div>
+
+      <div class="rounded-2xl p-8 bg-surface text-ink shadow-sm border border-base-200">
+        <h3 class="text-xl font-bold mb-2">Default Surface</h3>
+        <p>This is a standard card on the base background.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-2xl font-bold border-b border-base-200 pb-2 text-ink">4. Typography (Prose)</h2>
+    
+    <div class="bg-base-subtle p-8 rounded-2xl border border-base-200">
+      <div class="prose dark:prose-invert max-w-none">
+        <h3>This is a standard Prose Heading</h3>
+        <p>
+          This text demonstrates the standard <a href="#">typography styles</a>. It should automatically adapt colors based on the theme. 
+          The link color should match your primary brand color.
+        </p>
+        <ul>
+          <li>Unordered list item one</li>
+          <li>Unordered list item two</li>
+        </ul>
+        <blockquote>
+          "Design is not just what it looks like and feels like. Design is how it works."
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+</div>

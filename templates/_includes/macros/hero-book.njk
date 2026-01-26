@@ -1,0 +1,43 @@
+{% macro hero(options = {}) %}
+<!-- Hero -->
+<div class="{{ "bg-base-900" if options.dark else "bg-surface" }}">
+  <div class="bg-linear-to-b from-primary-600/40 via-transparent">
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-24">
+      <div class="flex items-start flex-col md:flex-row gap-x-4 bg-white-500">
+
+        <div class="max-w-60 mx-auto md:mx-0">
+          <img src="{{ options.imageSrc | default('/path/to/default-image.jpg') | safe }}" alt="{{ options.imageAlt | default('Book Cover') }}" class="h-auto">
+        </div>
+
+        <div class="max-w-170 space-y-8">
+
+          <!-- Title -->
+          <div class="max-w-3xl text-center md:text-left text-balance mx-auto">
+            <p class="text-2xl {{ "text-base-200" if options.dark else "text-ink" }} tracking-wide mb-1">{{ options.topText | default("Top text.") | safe }}</p>
+            <h1 class="block font-medium {{ "text-base-200" if options.dark else "text-ink" }} text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+              {{ options.titleText | default("Title text.") | safe }}
+            </h1>
+          </div>
+          <!-- End Title -->
+
+          <div class="max-w-3xl text-center md:text-left text-balance mx-auto">
+            <p class="text-lg {{ "text-base-400" if options.dark else "text-base-600" }}">{{ options.subtitleText | default("Subtitle text.") | safe }}</p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="text-center md:text-left">
+            <a class="inline-block bg-primary text-on-primary font-medium py-3 px-6 rounded-full hover:bg-primary-500 transition" href="{{ options.buttonLink | default("#") }}">
+              {{ options.buttonText | default("Get Started") }}
+            </a>
+          </div>
+          <!-- End Buttons -->
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- End Hero -->
+{% endmacro %}

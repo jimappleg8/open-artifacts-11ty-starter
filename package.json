@@ -1,0 +1,30 @@
+{
+  "name": "open-artifacts-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx eleventy",
+    "dev": "npx eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/typography": "^0.5.19",
+    "cssnano": "^7.1.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  },
+  "dependencies": {
+    "@11ty/eleventy-navigation": "^1.0.5",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "fast-glob": "^3.3.3",
+    "markdown-it": "^14.1.0",
+    "pagefind": "^1.4.0",
+    "yaml": "^2.8.2"
+  }
+}
