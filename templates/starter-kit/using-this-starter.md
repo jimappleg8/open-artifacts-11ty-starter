@@ -4,13 +4,13 @@ title: Using This Starter
 eleventyNavigation:
   key: Using This Starter
   parent: starting
-  order: 2
+  order: 3
 tags: starter-kit
 navKey: starter-kit
 ---
 {% section %}
 
-# Using This Starter
+{% pageHeader "Using This Starter" %}
 
 To use this starter, you will need to create a version of it in your own Github account. There are several ways to do this, and because I have never found Git to be "intuitive" in how it works, I'm going to explain my recommended method here in detail.
 
@@ -62,6 +62,6 @@ Instead:
 3. Apply your fix to that clean copy.
 4. Submit the Pull Request from there.
 
-For more detail, visit [How to Contribute](/how-to-contribute.html).
+For more detail, visit [How to Contribute](/project/how-to-contribute/).
 
 {% endsection %}

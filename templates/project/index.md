@@ -4,6 +4,8 @@ title: About This Project
 eleventyNavigation:
   key: About this project
   parent: project
+tags: project
+navKey: project-section
 ---
 {% section %}
 

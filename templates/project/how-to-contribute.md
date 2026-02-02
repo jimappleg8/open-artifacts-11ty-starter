@@ -1,7 +1,12 @@
 ---
-layout: default
+layout: sidebar-page
 title: How to Contribute
-permalink: /how-to-contribute.html
+eleventyNavigation:
+  key: How to Contribute
+  parent: contribute
+  order: 1
+tags: project
+navKey: project-section
 ---
 {% section %}
 
@@ -12,7 +17,7 @@ The whole point of an Open Artifacts project is to take a good idea and make it 
 There are <strong>many ways to contribute</strong> to this project, including:
 
 - Spreading the word about the project
-- [Looking at the roadmap](/oa-roadmap.html) and choosing some bit of work that's yours to do.
+- [Looking at the roadmap](/project/oa-roadmap/) and choosing some bit of work that's yours to do.
 - Using this Open Artifacts project by adapting it to your own needs and sharing your improvements.
 
 {% endsection %}

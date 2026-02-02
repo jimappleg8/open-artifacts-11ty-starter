@@ -4,6 +4,36 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@layer components {
+
+  /* Fix code elements inside prose blocks */
+  .prose code:not(:where(pre code)) {
+    @apply bg-base-subtle dark:bg-base-700 rounded px-1.5 py-0.5;
+    color: var(--color-ink) !important;
+    font-weight: 500 !important;
+  }
+  .prose :where(code):not(:where(pre code))::before,
+  .prose :where(code):not(:where(pre code))::after {
+    content: "" !important;
+  }
+
+  /* External link icon */
+  .external-link::after {
+    content: "";
+    display: inline-block;
+    width: 0.8em;      /* Sized relative to text */
+    height: 0.8em;
+    margin-left: 0.25em;
+    vertical-align: middle; /* Aligns nicely with text */
+    opacity: 0.7;      /* Slightly subtle */
+    
+    /* The Icon (USWDS style box-arrow) encoded as a Data URI */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'%3E%3C/path%3E%3Cpolyline points='15 3 21 3 21 9'%3E%3C/polyline%3E%3Cline x1='10' y1='14' x2='21' y2='3'%3E%3C/line%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
 body {
   color: var(--color-ink); /* USWDS Grade 90 equivalent */
   background-color: var(--color-surface); /* USWDS Grade 0 equivalent */

@@ -10,9 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-# Features Overview
-
-The main features of this website starter are centered around the specific needs of an Open Artifacts website.
+{% pageHeader "Features Overview", "The main features of this website starter are centered around the specific needs of an Open Artifacts website." %}
 
 ## Simple Static Website
 

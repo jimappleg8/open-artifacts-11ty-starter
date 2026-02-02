@@ -1,3 +1,6 @@
+import path from "path";
+import fs from "fs";
+
 export default function (eleventyConfig) {
 
   /**
@@ -95,12 +98,39 @@ export default function (eleventyConfig) {
    * Creates a styled page header with title and optional subtitle.
    */
   eleventyConfig.addShortcode("pageHeader", function(title, subtitle = "") {
-    return `
-      <div class="space-y-4 md:mb-12">
+    return `<div class="space-y-4 md:mb-12">
         <h1 class="text-4xl font-bold tracking-tight text-ink">${title}</h1>
         ${subtitle ? `<p class="text-xl text-base-500 max-w-2xl">${subtitle}</p>` : ""}
-      </div>
-    `;
+      </div>`.replace(/( ){6}/g, "");  // This was added to make demo code look cleaner
+  });
+
+  /**
+   * icon shortcode
+   * Embeds an SVG icon from the /templates/_includes/icons/ directory.
+   * Usage: {% icon "icon-name" "optional-tailwind-classes" %}
+   */
+  eleventyConfig.addShortcode("icon", function(iconName, className = "w-6 h-6") {
+    // 1. Resolve the path to your icon folder
+    const iconPath = path.join("./templates/_includes/icons", `${iconName}.svg`);
+    
+    // 2. Read the file
+    let data = fs.readFileSync(iconPath, "utf8");
+    
+    // 3. Accessibility & Tailwind Cleanup
+    // If the SVG has a hardcoded fill (SimpleIcons usually does), replace it with currentColor
+    // This allows classes like 'text-red-500' to actually change the color.
+    if (data.includes("fill=")) {
+      data = data.replace(/fill="[^"]*"/g, 'fill="currentColor"');
+    } else {
+      // If no fill exists, add it to the opening tag
+      data = data.replace("<svg", '<svg fill="currentColor"');
+    }
+
+    // 4. Inject the class names passed into the shortcode
+    // We stick the class attribute right after the <svg start tag
+    data = data.replace("<svg", `<svg class="${className}"`);
+
+    return data;
   });
 
 };

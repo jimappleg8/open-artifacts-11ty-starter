@@ -1,7 +1,12 @@
 ---
-layout: default.njk
+layout: sidebar-page
 title: Our Project Roadmap
-permalink: /oa-roadmap.html
+eleventyNavigation:
+  key: Our Project Roadmap
+  parent: contribute
+  order: 2
+tags: project
+navKey: project-section
 ---
 
 <div class="max-w-3xl mx-auto py-12 px-6">
@@ -15,7 +20,7 @@ permalink: /oa-roadmap.html
   </header>
 
   <div class="space-y-12">
-    {% for milestone in oas.roadmap %}
+    {% for milestone in roadmap %}
     <section class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
       
       <div class="bg-slate-50 p-6 border-b border-slate-200">

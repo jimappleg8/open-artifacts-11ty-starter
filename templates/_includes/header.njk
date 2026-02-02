@@ -1,10 +1,14 @@
 {% from "macros/theme-toggle.njk" import themeToggle %}
 
+{# 1. CALCULATE THE ACTIVE LINK ONCE #}
+{# This runs our new logic to find the single best match #}
+{% set activeLink = site.mainMenu | getActiveMenuItem(page.url) %}
+
 <header class="w-full text-base-700 bg-white dark:bg-base-300 border-t border-base-200 shadow-sm body-font sticky top-0">
 	<div class="max-w-4xl mx-auto relative px-4 py-4 flex justify-between items-center bg-white dark:bg-base-300">
 		<div class="flex items-center gap-4">
 			{# Site Title / Logo #}
-			<a href="/{{ site.subDirectory }}/index.html">
+			<a href="/">
 				<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
 					<polygon points="23.25 20.32 .75 20.32 .75 5.65 .75 3.62 23.25 3.62 23.25 20.32" fill="#fff" stroke="var(--color-base-500)" stroke-miterlimit="10" stroke-width=".5"/>
 					<line x1="23.17" y1="5.62" x2=".75" y2="5.62" fill="#fff" stroke="var(--color-base-500)" stroke-miterlimit="10" stroke-width=".5"/>
@@ -13,7 +17,7 @@
 					<path d="M10.17,7.08h3.67l3.53,9.77c.81-1.1,1.29-2.47,1.29-3.94,0-3.68-2.98-6.65-6.65-6.65s-6.65,2.98-6.65,6.65c0,1.48.48,2.84,1.29,3.94l3.53-9.77Z" fill="var(--color-primary)"/>
 					<ellipse cx="12" cy="12.91" rx="2.26" ry="1.76" fill="#dd0000"/></svg>
 			</a>
-			<a href="/{{ site.subDirectory }}/index.html" class="mb-0 font-thin text-base-500 dark:text-base-900 text-2xl font-sans italic text-shadow-lg decoration-primary">
+			<a href="/" class="mb-0 font-thin text-base-500 dark:text-base-900 text-2xl font-sans italic text-shadow-lg decoration-primary">
 				{{ site.title }}
 			</a>
 		</div>
@@ -32,17 +36,21 @@
     {# Desktop Menu Items #}
 		<nav class="hidden md:flex md:items-center md:w-auto ">
     {% for item in site.mainMenu %}
-      {# Determine if this item is active #}
-      {% set isCurrent = item.link | isCurrentPageOrSection(page.url) %}
+			{% if item.text == "Starter Kit" and not site.showStarterKit %}
+				{# Skip "Starter Kit" link if disabled in config #}
+			{% else %}
+				{# Determine if this item is active #}
+				{% set isCurrent = (item.link == activeLink) %}
 
-      <a class="text-base-500 dark:text-base-900 aria-[current]:text-primary aria-[current]:font-bold hover:text-primary px-1 {% if loop.last %}pr-2{% endif %}" href="{{ item.link }}" {% if isCurrent %}aria-current="page"{% endif %}>{{ item.text }}</a>
-      {% if not loop.last %}
-      <div class="text-base-300">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-        </svg>
-      </div>
-      {% endif %}
+				<a class="text-base-500 dark:text-base-900 aria-[current]:text-primary aria-[current]:font-bold hover:text-primary px-1 {% if loop.last %}pr-2{% endif %}" href="{{ item.link }}" {% if isCurrent %}aria-current="page"{% endif %}>{{ item.text }}</a>
+				{% if not loop.last %}
+				<div class="text-base-subtle dark:text-base-400">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+					</svg>
+				</div>
+				{% endif %}
+			{% endif %}
     {% endfor %}
       {{ themeToggle() }}
 		</nav>
@@ -65,10 +73,14 @@
 			<div>
 				<ul>
         {% for item in site.mainMenu %}
-          {% set isCurrent = item.link | isCurrentPageOrSection(page.url) %}
-					<li class="mb-2">
-						<a class="block p-3 text-base hover:bg-primary-100 hover:text-primary aria-[current]:bg-primary-100 aria-[current]:text-primary aria-[current]:font-bold rounded" href="{{ item.link }}" {% if isCurrent %}aria-current="page"{% endif %}>{{ item.text }}</a>
-					</li>
+					{% if item.text == "Starter Kit" and not site.showStarterKit %}
+						{# Skip "Starter Kit" link if disabled in config #}
+					{% else %}
+						{% set isCurrent = (item.link == activeLink) %}
+						<li class="mb-2">
+							<a class="block p-3 text-base hover:bg-primary-100 hover:text-primary aria-[current]:bg-primary-100 aria-[current]:text-primary aria-[current]:font-bold rounded" href="{{ item.link }}" {% if isCurrent %}aria-current="page"{% endif %}>{{ item.text }}</a>
+						</li>
+					{% endif %}
         {% endfor %}
 				</ul>
 			</div>

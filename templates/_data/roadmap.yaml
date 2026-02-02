@@ -1,19 +1,29 @@
-# src/_data/oaRoadmap.yaml
+# templates/_data/roadmap.yaml
+
+# This file is a list of objects, each representing a roadmap item.
+# This data is used to generate both the roadmap page on the site and
+# the oa-roadmap.json file for the OA Network.
+
+# Options for the "status" field are: 
+# "Planned", "In Progress", "Completed", and "Paused".
 
 - title: "The Foundation"
   status: "In Progress"
-  vision: |
+  vision: >
     We need to establish the core infrastructure. The goal is to make it easy for 
     anyone to clone the starter and get running in under 5 minutes.
   tasks:
-    - "Refactor the way config files are organized. E.g. split out sections of the site.js config into separate files."
-    - "Create the JSON generation pipeline."
-    - "Add Netlify config files and documentation."
+    - "Add Netlify documentation."
+    - "Complete the GitHub repository README."
+    - "Set up GitHub Actions for automated builds and deployments."
+    - "Complete the Using the Starter instructions page."
+    - "Add documentation about generating favicons and site icons."
+    - "Add better documentation about available shortcodes and macros."
     - "Add a site.xml file for SEO. This is pretty simple using 11ty collections."
 
 - title: "The Mobile-First Experience"
   status: "In Progress"
-  vision: |
+  vision: >
     The next step is to ensure the site is fully responsive and works well on 
     mobile devices. This includes optimizing layouts, navigation, and performance.
   tasks:
@@ -22,7 +32,7 @@
 
 - title: "Nice-to-haves and Enhancements"
   status: "Planned"
-  vision: |
+  vision: >
     As I've built the starter, I've thought of new features that would enhance the
     user experience. These are not critical for launch but would be great to have.
   tasks:
@@ -31,22 +41,10 @@
 
 - title: "Using Obsidian as a CMS"
   status: "Planned"
-  vision: |
+  vision: >
     Many users will want to use Obsidian to manage their artifact content. We 
     need to ensure compatibility and provide clear instructions.
   tasks:
     - "Document the process of setting up Obsidian with the starter."
-    - "Create templates and guidelines for writing artifact markdown files in Obsidian."
-    - "Consider whether some data files (like this one) could be written in Markdown."
     - "Explain how Obsidian can work with Sync to manage content across devices."
-    - "On phones, perhaps recommend a code editor for editing non-markdown files."
     - "Figure out a workflow for images and other assets when using Obsidian."
-
-- title: "The OA Network"
-  status: "Planned"
-  vision: |
-    Once the single-site experience is solid, we need to connect it to the 
-    Open Artifacts Hub. This involves finalizing the schema.
-  tasks:
-    - "Draft the JSON schema for Open Artifacts."
-    - "Build the search indexer."

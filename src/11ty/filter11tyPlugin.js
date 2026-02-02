@@ -31,43 +31,46 @@ export default function (eleventyConfig) {
   });
 
   /**
-   * isCurrentPageOrSection
-   * Determines if a given link corresponds to the current page or its section.
-   * Used for highlighting navigation menu items.
+   * getActiveMenuItem
+   * Determines the most specific active menu item based on the current page URL.
+   * It checks for exact matches first, then section matches, and returns the longest matching path.
+   * @param {Array} menuItems - Array of menu item objects with 'link' properties.
+   * @param {string} pageUrl - The current page URL.
+   * @returns {string} - The link of the most specific active menu item, or an empty string if none match.
    */
-  eleventyConfig.addFilter("isCurrentPageOrSection", (itemLink, pageUrl) => {
-    // Safety check for empty URLs
-    if (!itemLink || !pageUrl) return false;
+  eleventyConfig.addFilter("getActiveMenuItem", (menuItems, pageUrl) => {
+    if (!menuItems || !pageUrl) return "";
 
-    // 1. NORMALIZE LINKS
-    // If the itemLink or the pageUrl ends with a "/", it is a directory; 
-    // append "index.html" for comparison
-    if (itemLink.endsWith('/')) {
-      itemLink += 'index.html';
-    }
-    if (pageUrl.endsWith('/')) {
-      pageUrl += 'index.html';
-    }
-    // If the itemLink doesn't start with a "/", add it for consistency
-    if (!itemLink.startsWith('/')) {
-      itemLink = '/' + itemLink;
-    }
+    // Helper to ensure URLs start with a slash for consistent comparison
+    const normalize = (url) => {
+      if (!url.startsWith('/')) url = '/' + url;
+      return url;
+    };
 
-    // 2. EXACT MATCH (Always high priority)
-    // This catches "Home" on the homepage, or exact pages like "How to Contribute"
-    if (itemLink === pageUrl) {
-      return true;
-    }
+    const currentUrl = normalize(pageUrl);
 
-    // 3. SECTION MATCH
-    // Extract the directory from the menu link and check if the current page 
-    // is inside that directory.
-    // Example: "/project/about.html" becomes "/project/"
-    const linkDirectory = itemLink.substring(0, itemLink.lastIndexOf('/') + 1);
-    if (pageUrl.startsWith(linkDirectory) && linkDirectory !== "/") {
-      return true;
-    }
-    return false;
+    // 1. Find all items that are potential matches
+    const matches = menuItems.filter(item => {
+      const itemUrl = normalize(item.link);
+      
+      // Match A: Exact Match (e.g., "/about" == "/about")
+      if (currentUrl === itemUrl) return true;
+      
+      // Match B: Section Match (e.g., Current "/projects/app" starts with Item "/projects/")
+      // We ensure the item path ends with '/' to avoid partial word matches (like /project matching /projection)
+      const dirUrl = itemUrl.endsWith('/') ? itemUrl : itemUrl + '/';
+      return currentUrl.startsWith(dirUrl);
+    });
+
+    // 2. If no matches found, return empty
+    if (matches.length === 0) return "";
+
+    // 3. The Logic Fix: Sort by length descending. 
+    // The specific page link ("/projects/contribute/") is longer than the parent link ("/projects/").
+    // By picking the longest one, we highlight the specific page and ignore the parent.
+    matches.sort((a, b) => b.link.length - a.link.length);
+
+    return matches[0].link;
   });
 
   // Usage: {{ 'read_more' | t(page.lang) }}

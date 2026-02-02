@@ -11,7 +11,7 @@ permalink: /index.html
   titleText: "Welcome to the Open Artifacts 11ty Starter",
   subtitleText: "This starter template includes everything you need to quickly set up an Open Artifacts project website just like this one using Eleventy (11ty) as the static site generator.",
   buttonText: "Learn More About This Project",
-  buttonLink: "/project/index.html"
+  buttonLink: "/project/"
 } %}
 {{ hero(options) }}
 
@@ -25,25 +25,22 @@ This site is a minimal starting point for an **Open Artifacts project**—someth
 - Invite others to read it, remix it, and contribute
 - Ensure it can live on even if you step away
 
-### What You Can Do Here</h3>
+### What You Can Do With This Project</h3>
 
-- 💡 Learn what an <a href="#">Open Artifact</a> is</li>
-- 🔧 <a href="https://github.com/jimappleg8/open-artifacts-11ty-starter">Fork this site</a> and make it your own</li>
-- ✍️ Add content using simple Markdown files</li>
-- 💬 Let others submit suggestions using a built-in form</li>
-- 🌍 Publish instantly using Netlify or GitHub Pages</li>
+- 💡 Click on the link in the top banner to learn what an **Open Artifact** is.
+- 🔧 Learn [how to use this starter template](/starter-kit/using-this-starter/) to make a website of your own!
+- ✍️ Add content using simple Markdown files.
+- 💬 Let others contribute to your project by submitting suggestions in GitHub Issues.
+- 🌍 Publish instantly using Netlify or GitHub Pages.
 
 ### Who It's For</h3>
 
-If you're a <strong>cultural creator</strong>—someone who wants to make the world better by sharing your knowledge, ideas, or designs—this template is for you. You don’t need to know code, but if you’re willing to learn a little, this will give you a running start.
+If you're a **cultural creator**—someone who wants to make the world better by sharing your knowledge, ideas, or designs—this template is for you. You don’t need to know code, but if you’re willing to learn a little, this will give you a running start.
 
 ### Ready to Try It?</h3>
 
-→ Visit the [GitHub repository](https://github.com/jimappleg8/open-artifacts-11ty-starter)
-→ Or follow the setup guide (coming soon)
+→ Visit the [GitHub repository](https://github.com/jimappleg8/open-artifacts-11ty-starter) or look at the [Starter Kit](/starter-kit/) to find out what you're getting into.
 
-Want to see real examples? Check out some [featured Open Artifacts](#).
-
-This project is part of the [Evolve the World](https://evolvetheworld.org) initiative.
+This project is part of the [Evolve the World](https://evolvetheworld.org/) initiative.
 
 {% endsection %}

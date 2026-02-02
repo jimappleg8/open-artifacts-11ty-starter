@@ -5,18 +5,18 @@ eleventyExcludeFromCollections: true
 {
   "name": "{{ site.title }}",
   "description": "{{ site.description }}",
+  "longDescription": "{{ site.longDescription | replace("\n", "\\n") }}",
   "maintainer": {
     "name": "{{ site.maintainer.name }}",
     "email": "{{ site.maintainer.email }}",
     "url": "{{ site.maintainer.url }}"
   },
-  "license": "{{ site.license }}",
+  "homes": "{{ site.homes }}",
+  "collaborativeSpaces": "{{ site.collaborativeSpaces }}",
+  "needsDoingLists": "{{ site.needsDoingLists }}",
+  "adaptingTheProject": "{{ site.adaptingTheProject }}",
+  "licenses": "{{ site.licenses }}",
   "tags": {{ site.tags | jsonify | safe }},
-  "urls": {
-    "self": " {{ site.urls.self }}",
-    "repository": "{{ site.urls.repository }}",
-    "contribute": "{{ site.urls.contribute }}"
-  },
   "needsDoing": {
     "sourceType": "{{ site.needsDoing.sourceType }}",
     "url": "{{ site.needsDoing.url }}"

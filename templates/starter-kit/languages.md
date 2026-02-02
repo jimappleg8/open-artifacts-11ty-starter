@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-# Adding Languages
+{% pageHeader "Adding Languages" %}
 
 The starter template is minimally set up to handle multiple languages. By default, it includes English as the primary language. To add support for additional languages, follow these steps:
 
@@ -24,7 +24,7 @@ The starter template is minimally set up to handle multiple languages. By defaul
      "dir": "ltr"
    };
    ```
-3. **Add strings to the i18n.js file**: Update the `i18n.js` file located in `src/_data/` to include translations for the new language. For example, add an entry for Spanish:
+3. **Add strings to the i18n.js file**: Update the `templates/_data/i18n.js` file to include translations for the new language. For example, add an entry for Spanish:
 
    ```js
    const i18n = {
