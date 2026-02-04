@@ -23,9 +23,9 @@ This site is a minimal starting point for an **Open Artifacts project**—someth
 
 - Publish your idea as a clean, fast-loading site
 - Invite others to read it, remix it, and contribute
-- Ensure it can live on even if you step away
+- Ensure that your idea can live on even if you step away
 
-### What You Can Do With This Project</h3>
+### What You Can Do With This Project
 
 - 💡 Click on the link in the top banner to learn what an **Open Artifact** is.
 - 🔧 Learn [how to use this starter template](/starter-kit/using-this-starter/) to make a website of your own!
@@ -33,11 +33,11 @@ This site is a minimal starting point for an **Open Artifacts project**—someth
 - 💬 Let others contribute to your project by submitting suggestions in GitHub Issues.
 - 🌍 Publish instantly using Netlify or GitHub Pages.
 
-### Who It's For</h3>
+### Who It's For
 
-If you're a **cultural creator**—someone who wants to make the world better by sharing your knowledge, ideas, or designs—this template is for you. You don’t need to know code, but if you’re willing to learn a little, this will give you a running start.
+If you're a **cultural creator**—someone who wants to make the world better by sharing your knowledge, ideas, or designs—this template is for you. You don’t need to know how to code, but if you’re willing to learn a little, this will give you a running start.
 
-### Ready to Try It?</h3>
+### Ready to Try It?
 
 → Visit the [GitHub repository](https://github.com/jimappleg8/open-artifacts-11ty-starter) or look at the [Starter Kit](/starter-kit/) to find out what you're getting into.
 
