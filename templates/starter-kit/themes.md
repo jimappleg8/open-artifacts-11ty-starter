@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "Starter Themes", "Themes are a simple way to change the look and feel of your Open Artifacts project. You can choose from six pre-built themes or create your own custom theme to match your project's branding and style." %}
+{% pageHeader "Starter Themes", "Themes are a simple way to change the look and feel of your Open Artifacts project. You can choose from six pre-built themes or create your own custom theme to match your project's branding and style.", "Features" %}
 
 ## Using Pre-Built Themes
 

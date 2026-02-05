@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "About This Project", "Quickly publish a website that features your Open Artifacts project with the Open Artifacts Starter Template." %}
+{% pageHeader "About This Project", "Quickly publish a website that features your Open Artifacts project with the Open Artifacts Starter Template.", "Getting Started" %}
 
 'The IndieWeb is a people-focused alternative to the "corporate web."' As a community that is trying to build a better world outside of the corporate world, it makes sense that we want to be careful about owning our data. That means having your own website for your Open Artifacts project.
 

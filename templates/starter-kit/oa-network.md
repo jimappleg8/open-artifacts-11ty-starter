@@ -4,13 +4,13 @@ title: The Open Artifacts Network
 eleventyNavigation:
   key: The OA Network
   parent: features
-  order: 4
+  order: 5
 tags: starter-kit
 navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "The Open Artifacts Network", "Open artifacts projects are independent and decentralized, so we have tools to help us connect our projects together into what we call the Open Artifacts Network. This starter automatically generates two data files that can connect your project into this network." %}
+{% pageHeader "The Open Artifacts Network", "Open artifacts projects are independent and decentralized, so we have tools to help us connect our projects together into what we call the Open Artifacts Network. This starter automatically generates two data files that can connect your project into this network.", "Features" %}
 
 The [Open Artifacts Hub](https://openartifacts.com) is a search engine that helps cultural creators find Open Artifacts that they can contribute to. By providing information about your project and the tasks you need help with, you can help cultural creators find you and help you move your project forward.
 

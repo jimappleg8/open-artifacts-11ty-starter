@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "Features Overview", "The main features of this website starter are centered around the specific needs of an Open Artifacts website." %}
+{% pageHeader "Features Overview", "The main features of this website starter are centered around the specific needs of an Open Artifacts website.", "Features" %}
 
 ## Simple Static Website
 
@@ -26,7 +26,7 @@ Netlify is a great hosting service for static sites like this one. It also has a
 
 ## Themes
 
-There are some preset themes (mostly color schemes) that you can choose from. Applying them is as easy as changing a setting in a file.
+There are some preset themes (mostly color schemes) that you can choose from. Applying them is as easy as changing a setting in a file. [Learn more](/starter-kit/themes/).
 
 ## Dark/Light Mode
 
@@ -38,7 +38,7 @@ It's common to have an Instagram or Tik Tok account associated with an open arti
 
 ## "Components" as Nunjucks Macros and Shortcodes
 
-We use macros and shortcodes to add interest without mixing HTML with Markdown.
+We use macros and shortcodes to add interest without mixing HTML with Markdown. [Learn more](/starter-kit/shortcodes-and-macros/).
 
 ## Use Obsidian as a Content Management System (CMS)
 

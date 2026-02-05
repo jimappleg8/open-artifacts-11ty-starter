@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "About the Starter Kit", "These pages are to help you get started creating your Open Artifacts project right away." %}
+{% pageHeader "About the Starter Kit", "These pages are to help you get started creating your Open Artifacts project right away.", "Getting Started" %}
 
 This starter template is designed to quickly set you up with the skeleton of an open artifacts project. Our goal is to give you what you need without getting in your way. This section can easily be hidden from your website, but the files will stay in place so that you can use these markdown files as examples to build your own pages.
 

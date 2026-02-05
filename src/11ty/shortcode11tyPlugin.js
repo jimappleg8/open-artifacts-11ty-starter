@@ -1,3 +1,5 @@
+
+import Image from "@11ty/eleventy-img";
 import path from "path";
 import fs from "fs";
 
@@ -97,8 +99,9 @@ export default function (eleventyConfig) {
    * pageHeader component
    * Creates a styled page header with title and optional subtitle.
    */
-  eleventyConfig.addShortcode("pageHeader", function(title, subtitle = "") {
+  eleventyConfig.addShortcode("pageHeader", function(title, subtitle = "", sectionTitle = "") {
     return `<div class="space-y-4 md:mb-12">
+        ${sectionTitle ? `<p class="text-sm font-semibold text-primary-600 uppercase tracking-wide">${sectionTitle}</p>` : ""}
         <h1 class="text-4xl font-bold tracking-tight text-ink">${title}</h1>
         ${subtitle ? `<p class="text-xl text-base-500 max-w-2xl">${subtitle}</p>` : ""}
       </div>`.replace(/( ){6}/g, "");  // This was added to make demo code look cleaner
@@ -131,6 +134,80 @@ export default function (eleventyConfig) {
     data = data.replace("<svg", `<svg class="${className}"`);
 
     return data;
+  });
+
+  /**
+   * image shortcode
+   * Generates responsive images using @11ty/eleventy-img.
+   * Usage: {% image "filename.jpg", "Alt text", "Caption text", "alignment", "sizes" %}
+   * Alignment can be "left", "right", or "center" (default).
+   * Sizes defaults to "100vw" but can be customized for more complex layouts.
+   */
+  eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, caption = "", alignment = "center", sizes = "100vw") {
+    
+    // RESOLVE PATH
+    // Assumes images are in 'templates/_public/assets/images/' if a full path isn't provided
+    // You can adjust this logic to match your project structure
+    let inputPath = src;
+    if (!src.startsWith("templates/") && !src.startsWith("/")) {
+       inputPath = `./templates/_public/assets/images/${src}`;
+    }
+    else if (src.startsWith("/")) {
+        // Strip leading slash for file system lookup
+       inputPath = `.${src}`; 
+    }
+
+    // GENERATE IMAGES
+    // This creates webp and jpeg versions at different widths
+    let metadata = await Image(inputPath, {
+      widths: [400, 800, 1200],
+      formats: ["webp", "jpeg"],
+      outputDir: "./_site/img/", // Write files to public folder
+      urlPath: "/img/",          // URL in the HTML
+      filenameFormat: function (id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}w.${format}`;
+      }
+    });
+
+    // MAP ALIGNMENT TO TAILWIND CLASSES
+    // This replaces the old align="right"
+    let alignClass = "";
+    switch (alignment) {
+        case "right":
+            alignClass = "float-right ml-6 mb-6 max-w-[50%]"; 
+            break;
+        case "left":
+            alignClass = "float-left mr-6 mb-6 max-w-[50%]";
+            break;
+        case "center":
+        default:
+            alignClass = "mx-auto block my-6";
+            break;
+    }
+
+    // GENERATE HTML
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+      class: `rounded-lg shadow-md ${alignClass}`, // Default styling
+    };
+
+    const imageHTML = Image.generateHTML(metadata, imageAttributes);
+
+    // IF CAPTION EXISTS, WRAP IN FIGURE
+    if (caption) {
+      return `
+        <figure class="my-6 ${alignment === "center" ? "mx-auto" : ""}">
+          ${imageHTML}
+          <figcaption class="text-sm text-center text-base-500 mt-2">${caption}</figcaption>
+        </figure>
+      `;
+    }
+    return imageHTML;
   });
 
 };

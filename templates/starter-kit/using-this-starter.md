@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "Using This Starter" %}
+{% pageHeader "Using This Starter", "", "Getting Started" %}
 
 To use this starter, you will need to create a version of it in your own Github account. There are several ways to do this, and because I have never found Git to be "intuitive" in how it works, I'm going to explain my recommended method here in detail.
 
@@ -50,6 +50,18 @@ git push -u origin main
 ```
 
 You are now ready to make the website your own.
+
+## Merging changes from the original project.
+
+Since the template itself is an open artifacts project, we are bound to make improvements and fix bugs over time. If you want to keep your copy of the template up to date, then you can merge changes from the original project using these commands:
+
+```bash
+git fetch upstream
+git merge upstream/main
+```
+
+**Note:** If you see a "Merge Conflict" message, don't panic! It just means we both updated the same file (like package.json or site.js). Git will pause and ask you to decide which version to keep.
+
 
 # Contributing to this project
 

@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "Adding Languages" %}
+{% pageHeader "Adding Languages", "", "Features" %}
 
 The starter template is minimally set up to handle multiple languages. By default, it includes English as the primary language. To add support for additional languages, follow these steps:
 

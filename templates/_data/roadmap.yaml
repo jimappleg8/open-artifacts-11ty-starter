@@ -38,6 +38,7 @@
   tasks:
     - "Add a 'copy code' button to code blocks."
     - "Build a script that will auto-generate a theme file based on user colors."
+    - "Install the markdown-it-anchor plugin to automatically add anchor links to headings in the content."
 
 - title: "Using Obsidian as a CMS"
   status: "Planned"

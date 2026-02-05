@@ -10,7 +10,7 @@ navKey: starter-kit
 ---
 {% section %}
 
-{% pageHeader "Our Toolbox", "Websites are complicated because so many tools and technologies have to work seamlessly together. We carefully chose the tools we used to build this website in order to keep it as simple as possible." %}
+{% pageHeader "Our Toolbox", "Websites are complicated because so many tools and technologies have to work seamlessly together. We carefully chose the tools we used to build this website in order to keep it as simple as possible.", "Technical Bits" %}
 
 This website is simpler than most because it is static. It's made up of a bunch of files and some software that assembles those files into a complete website. Once you know what files to type into, it's pretty straight-forward. That also makes it easier for people around the world to contribute to your project.
 
