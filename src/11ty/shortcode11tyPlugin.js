@@ -14,6 +14,24 @@ export default function (eleventyConfig) {
   });
 
   /**
+   * hilite
+   * Wraps content in a styled highlight box.
+   * Usage: {% hilite "Your content here" %}
+   */
+  eleventyConfig.addShortcode("hilite", function(text, color = "bg-yellow-100") {
+    return `<span class="${color} p-1" role="alert">${text}</span>`;
+  });
+
+  /**
+   * externalLink
+   * Creates a styled link that opens in a new tab with an external link icon.
+   * Usage: {% externalLink "Link Text", "https://example.com" %}
+   */
+  eleventyConfig.addShortcode("externalLink", function(text, url) {
+    return `<a href="${url}" class="external-link" target="_blank" rel="noopener">${text}</a>`;
+  });
+
+  /**
    * section
    * Creates a section with optional variant styles and layout styles.
    */

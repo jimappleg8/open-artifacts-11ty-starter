@@ -19,7 +19,7 @@ permalink: /index.html
 
 ## What Is This?
 
-This site is a minimal starting point for an **Open Artifacts project**—something made to be shared, remixed, and improved over time. Whether you're documenting a local solution, a creative method, or a community idea, this starter helps you:
+This site is a minimal starting point for an {% hilite "**Open Artifacts project**", "bg-primary-100" %}—something made to be shared, remixed, and improved over time. Whether you're documenting a local solution, a creative method, or a community idea, this starter helps you:
 
 - Publish your idea as a clean, fast-loading site
 - Invite others to read it, remix it, and contribute
@@ -39,8 +39,8 @@ If you're a **cultural creator**—someone who wants to make the world better by
 
 ### Ready to Try It?
 
-→ Visit the [GitHub repository](https://github.com/jimappleg8/open-artifacts-11ty-starter) or look at the [Starter Kit](/starter-kit/) to find out what you're getting into.
+→ Visit the {% externalLink "GitHub repository", "https://github.com/jimappleg8/open-artifacts-11ty-starter" %} or look at the [Starter Kit](/starter-kit/) to find out what you're getting into.
 
-This project is part of the [Evolve the World](https://evolvetheworld.org/) initiative.
+This project is part of the {% externalLink "Evolve the World", "https://evolvetheworld.org/" %} initiative.
 
 {% endsection %}
