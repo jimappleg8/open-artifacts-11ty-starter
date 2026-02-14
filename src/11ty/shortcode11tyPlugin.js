@@ -18,7 +18,7 @@ export default function (eleventyConfig) {
    * Wraps content in a styled highlight box.
    * Usage: {% hilite "Your content here" %}
    */
-  eleventyConfig.addShortcode("hilite", function(text, color = "bg-yellow-100") {
+  eleventyConfig.addShortcode("hilite", function(text, color = "bg-accent-warm-subtle") {
     return `<span class="${color} p-1" role="alert">${text}</span>`;
   });
 
