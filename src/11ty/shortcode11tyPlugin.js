@@ -23,6 +23,28 @@ export default function (eleventyConfig) {
   });
 
   /**
+   * spanClass
+   * Allows you to add CSS classes to a span of text.
+   * Usage: {% spanClass %}Your content{% endspanClass %}
+   */
+  eleventyConfig.addPairedShortcode("spanClass", function(content, classes) {
+    return `<span class="${classes}">${content}</span>`;
+  });
+
+  /**
+   * divClass
+   * Wraps the contents in a div with the specified classes.
+   * Usage: {% divClass %}Your content{% enddivClass %}
+   */
+  eleventyConfig.addPairedShortcode("divClass", function(content, classes) {
+    return `
+    <div class="${classes}">
+      ${text}
+    </div>
+    `;
+  });
+
+  /**
    * externalLink
    * Creates a styled link that opens in a new tab with an external link icon.
    * Usage: {% externalLink "Link Text", "https://example.com" %}
