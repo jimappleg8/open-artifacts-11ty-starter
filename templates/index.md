@@ -19,7 +19,7 @@ permalink: /index.html
 
 ## What Is This?
 
-This site is a minimal starting point for an {% hilite "**Open Artifacts project**", "bg-primary-100" %}—something made to be shared, remixed, and improved over time. Whether you're documenting a local solution, a creative method, or a community idea, this starter helps you:
+This site is a minimal starting point for an {% hilite "bg-primary-100" %}**Open Artifacts project**{% endhilite %} —something made to be shared, remixed, and improved over time. Whether you're documenting a local solution, a creative method, or a community idea, this starter helps you:
 
 - Publish your idea as a clean, fast-loading site
 - Invite others to read it, remix it, and contribute

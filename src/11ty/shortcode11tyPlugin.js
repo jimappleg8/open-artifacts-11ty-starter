@@ -16,10 +16,10 @@ export default function (eleventyConfig) {
   /**
    * hilite
    * Wraps content in a styled highlight box.
-   * Usage: {% hilite "Your content here" %}
+   * Usage: {% hilite %}Your content here{% endhilite %}
    */
-  eleventyConfig.addShortcode("hilite", function(text, color = "bg-accent-warm-subtle") {
-    return `<span class="${color} p-1" role="alert">${text}</span>`;
+  eleventyConfig.addPairedShortcode("hilite", function(content, color = "bg-accent-warm-subtle") {
+    return `<span class="${color} p-1" role="alert">${content}</span>`;
   });
 
   /**
