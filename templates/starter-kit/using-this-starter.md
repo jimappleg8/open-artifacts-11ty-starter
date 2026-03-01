@@ -62,6 +62,16 @@ git merge upstream/main
 
 **Note:** If you see a "Merge Conflict" message, don't panic! It just means we both updated the same file (like package.json or site.js). Git will pause and ask you to decide which version to keep.
 
+## Installing the "application"
+
+The website is technically a Node application, so we need to install all the software that supports Eleventy and the rest of the application.
+
+```bash
+npm ci
+# Then we can launch the site in development mode:
+npm run dev
+```
+
 
 # Contributing to this project
 

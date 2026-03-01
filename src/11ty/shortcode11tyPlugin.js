@@ -23,25 +23,30 @@ export default function (eleventyConfig) {
   });
 
   /**
-   * spanClass
-   * Allows you to add CSS classes to a span of text.
-   * Usage: {% spanClass %}Your content{% endspanClass %}
+   * a
+   * Wraps the contents in an anchor element with the specified attributes.
+   * Usage: {% a %}Your content{% enda %}
    */
-  eleventyConfig.addPairedShortcode("spanClass", function(content, classes) {
-    return `<span class="${classes}">${content}</span>`;
+  eleventyConfig.addPairedShortcode("a", function(content, attributes) {
+    return `<a ${attributes}>${content}</a>`;
   });
 
   /**
-   * divClass
-   * Wraps the contents in a div with the specified classes.
-   * Usage: {% divClass %}Your content{% enddivClass %}
+   * div
+   * Wraps the contents in a div with the specified attributes.
+   * Usage: {% div %}Your content{% enddiv %}
    */
-  eleventyConfig.addPairedShortcode("divClass", function(content, classes) {
-    return `
-    <div class="${classes}">
-      ${text}
-    </div>
-    `;
+  eleventyConfig.addPairedShortcode("div", function(content, attributes) {
+    return `<div ${attributes}>${content}</div>`;
+  });
+
+  /**
+   * span
+   * Wraps the contents in a span with the specified attributes.
+   * Usage: {% span %}Your content{% endspan %}
+   */
+  eleventyConfig.addPairedShortcode("span", function(content, attributes) {
+    return `<span ${attributes}>${content}</span>`;
   });
 
   /**
